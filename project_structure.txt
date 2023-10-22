@@ -1,0 +1,184 @@
+.
+├── Dockerfile
+├── LICENSE
+├── PRIVACY.md
+├── PROMPTS.md
+├── README.md
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── project_structure.txt
+├── scripts
+│   ├── updateLocalEnv.ts
+│   └── updateProdEnv.ts
+├── src
+│   ├── app.d.ts
+│   ├── app.html
+│   ├── hooks.server.ts
+│   ├── lib
+│   │   ├── actions
+│   │   │   └── snapScrollToBottom.ts
+│   │   ├── buildPrompt.ts
+│   │   ├── components
+│   │   │   ├── AnnouncementBanner.svelte
+│   │   │   ├── CodeBlock.svelte
+│   │   │   ├── CopyToClipBoardBtn.svelte
+│   │   │   ├── LoginModal.svelte
+│   │   │   ├── MobileNav.svelte
+│   │   │   ├── Modal.svelte
+│   │   │   ├── ModelCardMetadata.svelte
+│   │   │   ├── ModelsModal.svelte
+│   │   │   ├── NavConversationItem.svelte
+│   │   │   ├── NavMenu.svelte
+│   │   │   ├── OpenWebSearchResults.svelte
+│   │   │   ├── Portal.svelte
+│   │   │   ├── ScrollToBottomBtn.svelte
+│   │   │   ├── SettingsModal.svelte
+│   │   │   ├── StopGeneratingBtn.svelte
+│   │   │   ├── Switch.svelte
+│   │   │   ├── SystemPromptModal.svelte
+│   │   │   ├── Toast.svelte
+│   │   │   ├── Tooltip.svelte
+│   │   │   ├── WebSearchToggle.svelte
+│   │   │   ├── chat
+│   │   │   │   ├── ChatInput.svelte
+│   │   │   │   ├── ChatIntroduction.svelte
+│   │   │   │   ├── ChatMessage.svelte
+│   │   │   │   ├── ChatMessages.svelte
+│   │   │   │   └── ChatWindow.svelte
+│   │   │   └── icons
+│   │   │       ├── IconChevron.svelte
+│   │   │       ├── IconCopy.svelte
+│   │   │       ├── IconDazzled.svelte
+│   │   │       ├── IconLoading.svelte
+│   │   │       ├── Logo.svelte
+│   │   │       └── LogoHuggingFaceBorderless.svelte
+│   │   ├── constants
+│   │   │   └── publicSepToken.ts
+│   │   ├── server
+│   │   │   ├── abortedGenerations.ts
+│   │   │   ├── auth.ts
+│   │   │   ├── database.ts
+│   │   │   ├── generateFromDefaultEndpoint.ts
+│   │   │   ├── modelEndpoint.ts
+│   │   │   ├── models.ts
+│   │   │   ├── summarize.ts
+│   │   │   └── websearch
+│   │   │       ├── generateQuery.ts
+│   │   │       ├── parseWeb.ts
+│   │   │       ├── runWebSearch.ts
+│   │   │       ├── searchWeb.ts
+│   │   │       └── sentenceSimilarity.ts
+│   │   ├── shareConversation.ts
+│   │   ├── stores
+│   │   │   ├── errors.ts
+│   │   │   ├── pendingMessage.ts
+│   │   │   ├── titleUpdate.ts
+│   │   │   └── webSearchParameters.ts
+│   │   ├── switchTheme.ts
+│   │   ├── types
+│   │   │   ├── AbortedGeneration.ts
+│   │   │   ├── Conversation.ts
+│   │   │   ├── Message.ts
+│   │   │   ├── MessageEvent.ts
+│   │   │   ├── MessageUpdate.ts
+│   │   │   ├── Model.ts
+│   │   │   ├── Settings.ts
+│   │   │   ├── SharedConversation.ts
+│   │   │   ├── Template.ts
+│   │   │   ├── Timestamps.ts
+│   │   │   ├── UrlDependency.ts
+│   │   │   ├── User.ts
+│   │   │   └── WebSearch.ts
+│   │   └── utils
+│   │       ├── analytics.ts
+│   │       ├── chunk.ts
+│   │       ├── concatUint8Arrays.ts
+│   │       ├── deepestChild.ts
+│   │       ├── getShareUrl.ts
+│   │       ├── hashConv.ts
+│   │       ├── loadClientCerts.ts
+│   │       ├── models.ts
+│   │       ├── randomUuid.ts
+│   │       ├── sha256.ts
+│   │       ├── share.ts
+│   │       ├── streamToAsyncIterable.ts
+│   │       ├── sum.ts
+│   │       ├── template.ts
+│   │       ├── trimPrefix.ts
+│   │       └── trimSuffix.ts
+│   ├── routes
+│   │   ├── +error.svelte
+│   │   ├── +layout.server.ts
+│   │   ├── +layout.svelte
+│   │   ├── +page.svelte
+│   │   ├── admin
+│   │   │   └── export
+│   │   │       └── +server.ts
+│   │   ├── conversation
+│   │   │   ├── +server.ts
+│   │   │   └── [id]
+│   │   │       ├── +page.server.ts
+│   │   │       ├── +page.svelte
+│   │   │       ├── +server.ts
+│   │   │       ├── message
+│   │   │       │   └── [messageId]
+│   │   │       │       ├── prompt
+│   │   │       │       │   └── +server.ts
+│   │   │       │       └── vote
+│   │   │       │           └── +server.ts
+│   │   │       ├── share
+│   │   │       │   └── +server.ts
+│   │   │       └── stop-generating
+│   │   │           └── +server.ts
+│   │   ├── conversations
+│   │   │   └── +page.server.ts
+│   │   ├── login
+│   │   │   ├── +page.server.ts
+│   │   │   └── callback
+│   │   │       ├── +page.server.ts
+│   │   │       ├── updateUser.spec.ts
+│   │   │       └── updateUser.ts
+│   │   ├── logout
+│   │   │   └── +page.server.ts
+│   │   ├── privacy
+│   │   │   └── +page.svelte
+│   │   ├── r
+│   │   │   └── [id]
+│   │   │       └── +page.ts
+│   │   ├── search
+│   │   │   └── [id]
+│   │   │       └── +server.ts
+│   │   └── settings
+│   │       └── +page.server.ts
+│   └── styles
+│       ├── highlight-js.css
+│       └── main.css
+├── static
+│   ├── chatui
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon.ico
+│   │   ├── favicon.svg
+│   │   ├── icon-128x128.png
+│   │   ├── icon-256x256.png
+│   │   ├── icon-512x512.png
+│   │   ├── icon.svg
+│   │   ├── logo.svg
+│   │   └── manifest.json
+│   └── huggingchat
+│       ├── apple-touch-icon.png
+│       ├── favicon.ico
+│       ├── favicon.svg
+│       ├── icon-128x128.png
+│       ├── icon-256x256.png
+│       ├── icon-512x512.png
+│       ├── icon.svg
+│       ├── logo.svg
+│       ├── manifest.json
+│       └── thumbnail.png
+├── svelte.config.js
+├── tailwind.config.cjs
+├── tsconfig.json
+└── vite.config.ts
+
+39 directories, 143 files

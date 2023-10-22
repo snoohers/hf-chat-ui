@@ -85,6 +85,36 @@ const modelConfig = z.object({
 		.optional(),
 });
 
+const GPT_3_5_TURBO_CONFIG = {
+    name: "gpt-3.5-turbo",
+    displayName: "GPT-3.5 Turbo",
+    description: "OpenAI GPT-3.5 Turbo Model",
+    endpoints: [{
+        host: "openai",
+        url: "https://api.openai.com/v1/engines/gpt-3.5-turbo/completions", // URL для GPT-3.5 Turbo
+        authorization: `Bearer YOUR_OPENAI_API_KEY`, // Замените YOUR_OPENAI_API_KEY на ваш API-ключ
+    }],
+    parameters: {
+        temperature: 0.7,
+        max_new_tokens: 150,
+    }
+};
+
+const GPT_4_CONFIG = {
+    name: "gpt-4",
+    displayName: "GPT-4",
+    description: "OpenAI GPT-4 Model",
+    endpoints: [{
+        host: "openai",
+        url: "https://api.openai.com/v1/engines/gpt-4/completions", // URL для GPT-4 (предполагаемый, так как на момент моего последнего обновления GPT-4 еще не был выпущен)
+        authorization: `Bearer YOUR_OPENAI_API_KEY`, // Замените YOUR_OPENAI_API_KEY на ваш API-ключ
+    }],
+    parameters: {
+        temperature: 0.7,
+        max_new_tokens: 150,
+    }
+};
+
 const modelsRaw = z.array(modelConfig).parse(JSON.parse(MODELS));
 
 const processModel = async (m: z.infer<typeof modelConfig>) => ({
@@ -97,6 +127,9 @@ const processModel = async (m: z.infer<typeof modelConfig>) => ({
 	preprompt: m.prepromptUrl ? await fetch(m.prepromptUrl).then((r) => r.text()) : m.preprompt,
 	parameters: { ...m.parameters, stop_sequences: m.parameters?.stop },
 });
+
+modelsRaw.push(GPT_3_5_TURBO_CONFIG);
+modelsRaw.push(GPT_4_CONFIG);
 
 export const models = await Promise.all(modelsRaw.map(processModel));
 
